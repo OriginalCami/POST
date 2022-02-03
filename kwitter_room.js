@@ -1,18 +1,21 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCAbPdPpMECWcUy2BSS4Jl55r2-8jqU6g0",
-  authDomain: "order-a966e.firebaseapp.com",
-  databaseURL: "https://order-a966e-default-rtdb.firebaseio.com",
-  projectId: "order-a966e",
-  storageBucket: "order-a966e.appspot.com",
-  messagingSenderId: "187010783944",
-  appId: "1:187010783944:web:27646acad668e5dab0a3fd",
-  measurementId: "G-679KMMPEK8"
+var firebaseConfig = {
+  apiKey: "AIzaSyBQyjrjTsIQsGMGcgu-cr1HjszcHi5ZWMk",
+  authDomain: "testkwitter.firebaseapp.com",
+  databaseURL: "https://testkwitter.firebaseio.com",
+  projectId: "testkwitter",
+  storageBucket: "testkwitter.appspot.com",
+  messagingSenderId: "624653701634",
+  appId: "1:624653701634:web:2cb9a8bd873f17d92d8d1b"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+
+
+  firebase.initializeApp(firebaseConfig);
+
+user_name = localStorage.getItem("user_name");
+
+document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
+
 
 function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
      Room_names = childKey;
@@ -22,6 +25,10 @@ function getData() {firebase.database().ref("/").on('value', function(snapshot) 
     });});}
 getData();
 
+firebase.initializeApp(firebaseConfig);
+  
+user_name = localStorage.getItem("user_name");
+document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
 function addRoom()
 {
   room_name = document.getElementById("room_name").value;
@@ -30,9 +37,9 @@ function addRoom()
     purpose : "adding room name"
   });
 
-localStorage.setItem("room_name", room_name);
-
-window.location = "kwitter_page.html";
+    localStorage.setItem("room_name", room_name);
+   
+    window.location = "kwitter_page.html";
 }
 
 function redirectToRoomName(name)
@@ -40,4 +47,10 @@ function redirectToRoomName(name)
   console.log(name);
   localStorage.setItem("room_name", name);
   window.location = "kwitter_page.html";
+}
+
+function logout() {
+localStorage.removeItem("user_name");
+localStorage.removeItem("room_name");
+    window.location = "index.html";
 }
